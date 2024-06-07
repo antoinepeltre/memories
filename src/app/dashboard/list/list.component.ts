@@ -35,7 +35,6 @@ export class ListComponent implements OnInit {
           if (this.user.id) {
             this.getMemories(this.user.id);
           }
-          console.dir(this.user);
         }
 
       })
@@ -45,7 +44,7 @@ export class ListComponent implements OnInit {
    * Get User Memories
    */
   getMemories(userId: string) {
-    console.dir('test');
+
     if (this.user) {
       this.memoryService.getMemories(userId)
         .subscribe(resp => {
@@ -54,7 +53,18 @@ export class ListComponent implements OnInit {
           }
         })
     }
+  }
 
+  /**
+   * Delete Memory
+   */
+  deleteMemory(memoryId: string) {
+      this.memoryService.deleteMemory(memoryId)
+      .subscribe( resp => {
+        if (this.user) {
+          this.getMemories(this.user.id);
+        }
+      })
   }
 
 }

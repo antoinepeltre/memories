@@ -92,7 +92,6 @@ export class AuthService {
    */
   getCurrentUserId() {
     if (this.userId) {
-      console.dir(this.userId);
       return this.userId;
     } else {
       return null;

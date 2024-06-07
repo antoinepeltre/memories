@@ -57,7 +57,6 @@ export class MemoryService {
    * Get Memories from Supabase
    */
   getMemories(userId: string): Observable<Memory[]> {
-    console.dir(userId);
     
     return from(this.supabase
       .from('memories')
@@ -69,6 +68,7 @@ export class MemoryService {
           throw new Error(response.error.message);
         }
         return response.data.map(item => new Memory(
+          item.id,
           item.title,
           new Date(item.date),
           item.description,
@@ -79,5 +79,12 @@ export class MemoryService {
         ));
       })
     );
+  }
+
+  deleteMemory(memoryId: string) {
+    return from(this.supabase
+      .from('memories')
+      .delete()
+      .eq('id', memoryId));
   }
 }

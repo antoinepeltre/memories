@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -11,6 +11,13 @@ export class CardComponent {
   @Input() date: Date | undefined;
   @Input() location: string = '';
   @Input() word: string = '';
+  @Input() memoryId: string = '';
+  @Output() deleteMemory: EventEmitter<string> = new EventEmitter<string>();
+  
+
+  onDeleteMemory(memoryId: string) {
+    this.deleteMemory.emit(memoryId);
+  }
 
 
 }
