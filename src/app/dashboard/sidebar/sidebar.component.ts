@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
     .subscribe(resp => {
       if (resp) {
         this.user = resp;
-        console.dir(this.user);
+        
       }
     })
   }

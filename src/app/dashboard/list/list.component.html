@@ -1,7 +1,8 @@
-
-
-
-<div class="flex flex-row">
-    <app-card class="mr-10"></app-card>
-    <app-card></app-card>
+<div class="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+    <ng-container *ngFor="let memory of memories">
+        <div class="flex justify-center">
+            <app-card class="w-full" [title]="memory.title" [description]="memory.description" [date]="memory.date">
+            </app-card>
+        </div>
+    </ng-container>
 </div>

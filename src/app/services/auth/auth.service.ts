@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private supabase: SupabaseClient
+  private supabase: SupabaseClient;
+  userId = '';
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
@@ -66,7 +67,11 @@ export class AuthService {
     return from(this.supabase.auth.getUser()).pipe(
       map(({ data, error }) => {
         if (data) {
+          if (data.user) {
+            this.userId = data.user?.id;
+          }
           return data.user;
+          
         } else if (error) {
           throw new Error(error.message);
         }
@@ -76,9 +81,21 @@ export class AuthService {
   }
 
   /**
-   * SignOut a user
+   * Sign out a user
    */
   signOut() {
     return from(this.supabase.auth.signOut());
+  }
+
+  /**
+   * Send CurrentUserId from everywhere
+   */
+  getCurrentUserId() {
+    if (this.userId) {
+      console.dir(this.userId);
+      return this.userId;
+    } else {
+      return null;
+    }
   }
 }
