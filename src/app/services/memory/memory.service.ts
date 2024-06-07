@@ -35,7 +35,6 @@ export class MemoryService {
    * Add Memomry to Supabase
    */
   addMemory(memory: Memory): Observable<any> {
-
     return from(this.supabase
       .from('memories')
       .insert([
@@ -68,23 +67,26 @@ export class MemoryService {
           throw new Error(response.error.message);
         }
         return response.data.map(item => new Memory(
-          item.id,
           item.title,
           new Date(item.date),
           item.description,
           item.location,
           item.photo,
           item.latitude,
-          item.longitude
+          item.longitude,
+          item.id,
         ));
       })
     );
   }
 
+  /**
+   * Delete memory
+   */
   deleteMemory(memoryId: string) {
     return from(this.supabase
       .from('memories')
       .delete()
-      .eq('id', memoryId));
+      .eq('id', memoryId))
   }
 }

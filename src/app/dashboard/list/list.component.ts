@@ -44,7 +44,6 @@ export class ListComponent implements OnInit {
    * Get User Memories
    */
   getMemories(userId: string) {
-
     if (this.user) {
       this.memoryService.getMemories(userId)
         .subscribe(resp => {

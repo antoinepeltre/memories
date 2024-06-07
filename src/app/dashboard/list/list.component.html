@@ -6,7 +6,9 @@
             [description]="memory.description" 
             [date]="memory.date"
             [memoryId]="memory.id"
-            (deleteMemory)="deleteMemory($event)">
+            (deleteMemory)="deleteMemory($event)"
+            *ngIf="memory.id"
+            [location]="memory.location">
             </app-card>
         </div>
     </ng-container>
