@@ -12,6 +12,7 @@ export class CardComponent {
   @Input() location: string = '';
   @Input() word: string = '';
   @Input() memoryId: string = '';
+  @Input() index: number = 0;
   @Output() deleteMemory: EventEmitter<string> = new EventEmitter<string>();
   
 

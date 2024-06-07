@@ -61,6 +61,7 @@ export class MemoryService {
       .from('memories')
       .select('*')
       .eq('user_id', userId)
+      .order('date', { ascending: false })
     ).pipe(
       map(response => {
         if (response.error) {
