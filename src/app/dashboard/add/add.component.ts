@@ -12,7 +12,8 @@ import { MemoryService } from 'src/app/services/memory/memory.service';
 })
 export class AddComponent {
   addMemoryForm: FormGroup;
-  
+  setSelectedSuggestion: any;
+
 
   constructor(private memoryService: MemoryService,
     private router: Router) {
@@ -25,12 +26,22 @@ export class AddComponent {
 
   }
 
+  /**
+   * Get Suggestion coordonate from autocomplete
+   */
+  setSelected(event: any) {
+    this.setSelectedSuggestion = event;
+
+  }
 
   /**
    * Add memory onSubmit
    */
   onSubmit() {
-    const memory = new Memory(this.addMemoryForm.controls['title'].value, this.addMemoryForm.controls['date'].value, this.addMemoryForm.controls['description'].value,this.addMemoryForm.controls['location'].value, )
+    const memory = new Memory(this.addMemoryForm.controls['title'].value, this.addMemoryForm.controls['date'].value, this.addMemoryForm.controls['description'].value, this.addMemoryForm.controls['location'].value, 'null', '0', '0')
+    memory.location = this.setSelectedSuggestion.full_address;
+    memory.latitude = this.setSelectedSuggestion.coordinates.latitude;
+    memory.longitude = this.setSelectedSuggestion.coordinates.longitude;
     this.memoryService.addMemory(
       memory
     ).subscribe(resp => {

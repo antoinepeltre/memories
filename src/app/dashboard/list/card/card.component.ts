@@ -18,6 +18,7 @@ export class CardComponent {
 
   onDeleteMemory(memoryId: string) {
     this.deleteMemory.emit(memoryId);
+    
   }
 
 
