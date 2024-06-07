@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -9,8 +10,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    private router: Router) {
 
     this.registerForm = new FormGroup({
       firstName: new FormControl(''),
@@ -27,8 +30,12 @@ export class RegisterComponent {
       this.registerForm.controls['password'].value,
       this.registerForm.controls['firstName'].value,
       this.registerForm.controls['lastName'].value,
-      
-    )
+    ).subscribe( resp => {
+      this.router.navigate(['login']);
+    },
+    error => {
+      this.errorMessage = error;
+    }) 
   }
 
 }
