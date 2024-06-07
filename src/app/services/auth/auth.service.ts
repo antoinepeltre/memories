@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  createClient, SupabaseClient
+  createClient, SupabaseClient,
+  User
 } from '@supabase/supabase-js';
 import { catchError, from, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -54,10 +55,30 @@ export class AuthService {
           return data;
         }
         throw new Error('No access token found in response');
-      }),
-      catchError(err => {
-        return throwError(err);
       })
     );
+  }
+
+  /**
+   * Get current user detail
+   */
+  getCurrentUser(): Observable<User | null> {
+    return from(this.supabase.auth.getUser()).pipe(
+      map(({ data, error }) => {
+        if (data) {
+          return data.user;
+        } else if (error) {
+          throw new Error(error.message);
+        }
+        return null;
+      })
+    );
+  }
+
+  /**
+   * SignOut a user
+   */
+  signOut() {
+    return from(this.supabase.auth.signOut());
   }
 }
