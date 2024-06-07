@@ -8,6 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
+import { ListComponent } from './dashboard/list/list.component';
+import { CardComponent } from './dashboard/list/card/card.component';
+import { MapComponent } from './dashboard/map/map.component';
+import { AddComponent } from './dashboard/add/add.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    ListComponent,
+    CardComponent,
+    MapComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ export class LoginComponent {
       this.loginForm.controls['email'].value,
       this.loginForm.controls['password'].value
     ).subscribe( resp => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard/list']);
     },
     error => {
       this.errorMessage = error;

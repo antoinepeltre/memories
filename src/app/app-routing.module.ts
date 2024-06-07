@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ListComponent } from './dashboard/list/list.component';
+import { MapComponent } from './dashboard/map/map.component';
+import { AddComponent } from './dashboard/add/add.component';
 
 const routes: Routes = [
   {
@@ -15,8 +18,14 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      { path: 'list', component: ListComponent },
+      { path: 'map', component: MapComponent },
+      { path: 'add', component: AddComponent },
+    ]
   },
+  { path: '**', redirectTo: '/dashboard/list' }
 ];
 
 @NgModule({
