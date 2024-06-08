@@ -6,12 +6,13 @@
             [ngClass]="{'rounded-t-lg': showSuggestions, 'rounded-lg': !showSuggestions}"
             placeholder="Type an address" 
             (input)="onInput($event)"
-            [(ngModel)]="selectedLocationName">
+            [(ngModel)]="selectedLocationName"
+            autocomplete="off">
     </div>
     <div class="relative w-full max-w-full rounded-b-lg border-gray-500 border" *ngIf="showSuggestions && suggestions.length > 0">
         <ul class="w-full max-w-full">
             <li *ngFor="let suggestion of suggestions" (click)="setSelectedSuggestion(suggestion)"
-                class="truncate p-2 text-sm w-24 text-gray-900 placeholder:text-gray-400 cursor-pointer hover:bg-fuchsia-100 hover:last:rounded-b-lg hover:text-fuchsia-700">
+                class="truncate p-2 text-sm text-gray-900 placeholder:text-gray-400 cursor-pointer hover:bg-fuchsia-100 hover:last:rounded-b-lg hover:text-fuchsia-700">
                 {{suggestion.full_address}}
             </li>
         </ul>

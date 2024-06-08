@@ -54,10 +54,11 @@ export class MapComponent implements OnInit {
         .subscribe(resp => {
           if (resp) {
             this.memories = resp;
-            this.initMap(); 
-            this.memories.forEach( memory => {
-              this.generateMarkerMap(memory.longitude, memory.latitude);
-            })           
+            this.initMap();
+            this.memories.forEach(memory => {
+              this.generateMarkerMap(memory);
+              // this.generatePopupMap(memory);
+            })
           }
         })
     }
@@ -76,12 +77,28 @@ export class MapComponent implements OnInit {
       center: [this.lng, this.lat]
     });
     this.map.addControl(new mapboxgl.NavigationControl());
+
+
+
+
+
   }
 
-  generateMarkerMap(longitude: string | undefined, latitude: string | undefined) {
-    new mapboxgl.Marker().setLngLat([longitude, latitude])
-    .addTo(this.map)
+  generateMarkerMap(memory: Memory) {
+    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+      `<div class="p-2">
+        <h3 class="mt-2 text-lg font-semibold text-gray-800  underline">${memory.title}</h3>
+        <p class="mt-2 text-sm text-gray-600">${memory.description}</p>
+        <p class="text-sm mt-2 text-gray-400 italic text-right"> ${memory.date.toLocaleString()}</p>
+        </div>`
+    );
+    const marker = new mapboxgl.Marker()
+      .setLngLat([memory.longitude, memory.latitude])
+      .setPopup(popup)
+      .addTo(this.map);
   }
+
+
 
 
 }
