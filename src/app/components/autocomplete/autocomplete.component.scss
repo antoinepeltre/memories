@@ -1,0 +1,14 @@
+.relative {
+    width: 100%;
+  }
+  
+  .relative ul {
+    width: 100%;
+  }
+  
+  .relative ul li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
