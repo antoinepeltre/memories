@@ -1,5 +1,5 @@
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { from, map, Observable, switchMap } from 'rxjs';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
@@ -8,7 +8,7 @@ import { Memory } from 'src/app/models/Memory';
 @Injectable({
   providedIn: 'root'
 })
-export class MemoryService {
+export class MemoryService{
   private supabase: SupabaseClient
   user: User | undefined;
 
@@ -49,7 +49,7 @@ export class MemoryService {
           location: memory.location,
           photo: memory.photo,
           longitude: memory.longitude,
-          latitude: memory.latitude
+          latitude: memory.latitude,
         }
       ])
     );
@@ -93,4 +93,14 @@ export class MemoryService {
       .delete()
       .eq('id', memoryId))
   }
+
+  uploadMemoryPicture(filePath: string, file: File) {
+    return from(this.supabase.storage.from('memories').upload(filePath, file));
+  }
+
+  downLoadImage(path: string) {
+    return this.supabase.storage.from('memories').download(path);
+  }
+
+
 }

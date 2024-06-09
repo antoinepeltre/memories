@@ -8,7 +8,7 @@ export class Memory {
     longitude?: string;
     id?: string;
     
-    constructor(title: string, date: Date, description: string, location: string, photo?: string, latitude?: string, longitude?: string, id?: string, ) {
+    constructor(title: string, date: Date, description: string, location: string, photo?: string, latitude?: string, longitude?: string, id?: string ) {
         this.title = title;
         this.date = date;
         this.description = description;

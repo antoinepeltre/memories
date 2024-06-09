@@ -4,6 +4,7 @@ import { User } from '@supabase/supabase-js';
 import { Memory } from 'src/app/models/Memory';
 import { MemoryService } from 'src/app/services/memory/memory.service';
 import { Observable } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list',
@@ -13,9 +14,11 @@ import { Observable } from 'rxjs';
 export class ListComponent implements OnInit {
   memories: Memory[] = [];
   user: User | undefined;
+  avatarUrl: SafeResourceUrl | undefined;
 
   constructor(private memoryService: MemoryService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private readonly dom: DomSanitizer) {
 
   }
 
@@ -49,6 +52,13 @@ export class ListComponent implements OnInit {
         .subscribe(resp => {
           if (resp) {
             this.memories = resp;
+            console.dir(this.memories);
+            this.memories.forEach( memory => {
+              if (memory) {
+                this.downloadImage(memory);
+              }
+            })
+            
           }
         })
     }
@@ -64,6 +74,20 @@ export class ListComponent implements OnInit {
           this.getMemories(this.user.id);
         }
       })
+  }
+
+  async downloadImage(memory: any) {
+    try {
+      const { data } = await this.memoryService.downLoadImage(memory.photo)
+      if (data instanceof Blob) {
+        this.avatarUrl = this.dom.bypassSecurityTrustResourceUrl(URL.createObjectURL(data))
+        memory.photo = this.dom.bypassSecurityTrustResourceUrl(URL.createObjectURL(data));
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error downloading image: ', error.message)
+      }
+    }
   }
 
 }

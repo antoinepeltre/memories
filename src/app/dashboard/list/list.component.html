@@ -9,7 +9,8 @@
             (deleteMemory)="deleteMemory($event)"
             *ngIf="memory.id"
             [location]="memory.location"
-            [index]="i + 1">
+            [index]="i + 1"
+            [avatarUrl]="memory.photo">
             </app-card>
         </div>
     </ng-container>

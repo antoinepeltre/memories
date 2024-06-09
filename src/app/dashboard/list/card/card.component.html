@@ -1,5 +1,4 @@
 <div class="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md border-gray-200 border">
-    
     <div class="flex items-center justify-between">
         <p class="text-xs">Souvenir n°{{index}}</p>
         <svg (click)="onDeleteMemory(memoryId)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -8,6 +7,9 @@
                 d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
     </div>
+    <img class="object-cover w-full h-64" *ngIf="avatarUrl" [src]="avatarUrl">
+    
+   
 
     <div class="mt-2">
         <span class="px-3 py-1 text-xs text-fuchsia-800 uppercase bg-fuchsia-200 rounded-full ">{{location}}</span>

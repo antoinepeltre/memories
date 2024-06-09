@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-card',
@@ -13,12 +14,14 @@ export class CardComponent {
   @Input() word: string = '';
   @Input() memoryId: string = '';
   @Input() index: number = 0;
+  @Input() avatarUrl: SafeResourceUrl | undefined
   @Output() deleteMemory: EventEmitter<string> = new EventEmitter<string>();
   
 
+
   onDeleteMemory(memoryId: string) {
     this.deleteMemory.emit(memoryId);
-    
+
   }
 
 
