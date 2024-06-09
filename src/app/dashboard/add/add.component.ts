@@ -14,7 +14,6 @@ import { MemoryService } from 'src/app/services/memory/memory.service';
 export class AddComponent implements OnInit {
   addMemoryForm: FormGroup;
   setSelectedSuggestion: any;
-  selectedFile: File | null = null;
   uploading = false;
   avatarUrl: SafeResourceUrl | undefined
   picturePath: string = '';
@@ -60,10 +59,6 @@ export class AddComponent implements OnInit {
       error => {
 
       })
-  }
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
   }
 
   uploadAvatar(event: any) {
