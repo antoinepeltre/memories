@@ -7,20 +7,20 @@
     </div>
 
     <div class="mt-2">
-        <span class="px-3 py-1 text-xs text-fuchsia-800 uppercase bg-fuchsia-200 rounded-full text-ellipsis overflow-hidden ...">{{location}}</span>
+        <span class="px-3 py-1 text-xs text-fuchsia-800 uppercase bg-fuchsia-200 rounded-full line-clamp-1">{{location}}</span>
     </div>
     
 
     <div>
         <h1 class="mt-2 text-lg font-semibold text-gray-800  underline">{{title}}</h1>
-        <p class="mt-2 text-sm text-gray-600 ">{{description}}</p>
+        <p class="mt-2 text-sm text-gray-600 line-clamp-3">{{description}}</p>
     </div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-between mt-8">
         <div class="text-sm mt-2 text-gray-400 italic ">
             <span>{{date | date:'EEEE, MMMM d, y'}}</span>
         </div>
-        <button class="text-xs px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
+        <button class="text-xs px-6 py-2 h-50 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80"
         (click)="onDeleteMemory(memoryId)">
             Delete
         </button>
