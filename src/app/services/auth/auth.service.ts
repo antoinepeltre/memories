@@ -3,7 +3,7 @@ import {
   createClient, SupabaseClient,
   User
 } from '@supabase/supabase-js';
-import { catchError, from, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, map, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,12 +12,20 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private supabase: SupabaseClient;
   userId = '';
+  private isLoggedInSubject: BehaviorSubject<boolean>;
 
   supabaseUrl = 'https://zblqfuxaqjymyfmyndlu.supabase.co';
   supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpibHFmdXhhcWp5bXlmbXluZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTg4OTEsImV4cCI6MjAzMzE3NDg5MX0.le_7D9YmGa1j_QGHKE1WPzZWuQraQbRMSzVk-jV6cmc';
 
   constructor() {
+    
     this.supabase = createClient(this.supabaseUrl, this.supabaseKey);
+    
+    this.isLoggedInSubject = new BehaviorSubject<boolean>(this.supabase.auth.getSession() !== null);
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      this.isLoggedInSubject.next(session !== null);
+    });
   }
 
 
@@ -99,5 +107,9 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isLoggedInSubject.asObservable();
   }
 }
