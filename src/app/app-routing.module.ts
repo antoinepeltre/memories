@@ -28,8 +28,8 @@ const routes: Routes = [
       { path: 'add', component: AddComponent },
     ]
   },
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
-  { path: '**', redirectTo: '/register' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
