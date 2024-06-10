@@ -52,7 +52,6 @@ export class ListComponent implements OnInit {
         .subscribe(resp => {
           if (resp) {
             this.memories = resp;
-            console.dir(this.memories);
             this.memories.forEach( memory => {
               if (memory) {
                 this.downloadImage(memory);
