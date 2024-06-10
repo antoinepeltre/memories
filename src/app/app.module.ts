@@ -14,6 +14,8 @@ import { MapComponent } from './dashboard/map/map.component';
 import { AddComponent } from './dashboard/add/add.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BottombarComponent } from './dashboard/bottombar/bottombar.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     CardComponent,
     MapComponent,
     AddComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    BottombarComponent
   ],
   imports: [
     BrowserModule,

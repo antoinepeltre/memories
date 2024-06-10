@@ -1,6 +1,10 @@
 <div class="flex">
-    <app-sidebar></app-sidebar>
+    <!-- Sidebar for screens larger than md -->
+    <app-sidebar class="hidden md:block"></app-sidebar>
+
     <div class="flex-1">
         <router-outlet></router-outlet>
+        <!-- Bottom bar for screens smaller than md -->
+        <app-bottombar class="md:hidden"></app-bottombar>
     </div>
 </div>
