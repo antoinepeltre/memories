@@ -1,27 +1,54 @@
-# Memories
+Certainly! Here's a GitHub README format for your project:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+---
 
-## Development server
+# Memories (Enhance)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Memories (Enhance) is a web application designed to help users save and visualize their best memories through both a list view and an interactive map.
 
-## Code scaffolding
+## Project Access
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can access the project [here](https://memories-msws.onrender.com/#/login). If the connection fails, use the following credentials:
+- **Email Address:** jonhdoe@gmail.com
+- **Password:** jonhdoe
 
-## Build
+## Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Front-End
+- **Angular**: Used for creating dynamic and responsive user interfaces.
+- **Tailwind CSS**: CSS framework for modern and customizable styling.
 
-## Running unit tests
+### Back-End
+- **Supabase**: Platform providing database and authentication functionalities.
+  
+### Hosting
+- **Render**: Deployment and hosting of the web application.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Map Integration
+- **Mapbox**: Integration for interactive map functionalities.
 
-## Running end-to-end tests
+### Geocoding
+- **Mapbox**: Utilized for converting addresses into geographic coordinates.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Key Features
 
-## Further help
+- **Secure Authentication**: Secure login and session management.
+- **Memory Management**: Add, edit, and delete memories.
+- **Map Visualization**: Display memories on an interactive map.
+- **Detailed List View**: List view with additional memory details.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to Contribute
+
+1. Clone this repository to your local machine.
+2. Create a branch for your changes (`git checkout -b feature/NewFeature`).
+3. Make your changes and commit them (`git commit -am 'Added a new feature'`).
+4. Push your changes to your branch (`git push origin feature/NewFeature`).
+5. Submit a pull request.
+
+## Acknowledgments
+
+We thank the open-source community for their contributions.
+
+---
+
+Feel free to explore the project and provide us with your feedback and suggestions. Thank you for your interest in Memories (Enhance)!
